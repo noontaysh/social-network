@@ -1,8 +1,8 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isRejectedWithValue} from "@reduxjs/toolkit";
 import {profileAPI} from "../../api/api.js";
 
 const initialState = {
-    profileData: null,
+    profileData: {},
     status: 'idle',
     error: null,
 }
@@ -27,12 +27,20 @@ const profileSlice = createSlice({
     }
 })
 
-export const fetchProfile = createAsyncThunk('profile/fetchProfile', /** @param userId {number} */ async(userId) => {
+export const fetchProfile = createAsyncThunk('profile/fetchProfile', /**
+ @param userId {number}
+ @param thunkAPI {object}
+ */
+async(userId, thunkAPI) => {
     try {
         return await profileAPI.getProfile(userId)
     } catch (e) {
-        return e.message
+        return thunkAPI.rejectWithValue(e.message)
     }
 } )
+
+export const getProfileData = (state) => state.profile.profileData
+export const getProfileStatus = (state) => state.profile.status
+export const getProfileError = (state) => state.profile.error
 
 export default profileSlice.reducer
