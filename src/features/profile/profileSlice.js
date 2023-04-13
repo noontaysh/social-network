@@ -7,26 +7,6 @@ const initialState = {
     error: null,
 }
 
-const profileSlice = createSlice({
-    name: 'profile',
-    initialState,
-    reducers: {},
-    extraReducers(builder) {
-        builder
-            .addCase(fetchProfile.pending, (state, action) => {
-                state.status = 'pending'
-            })
-            .addCase(fetchProfile.rejected, (state, action) => {
-                state.status = 'failed'
-                state.error = action.payload
-            })
-            .addCase(fetchProfile.fulfilled, (state, action) => {
-                state.status = 'success'
-                state.profileData = action.payload
-            })
-    }
-})
-
 export const fetchProfile = createAsyncThunk('profile/fetchProfile', /**
  @param userId {number}
  @param thunkAPI {object}
@@ -37,7 +17,28 @@ async(userId, thunkAPI) => {
     } catch (e) {
         return thunkAPI.rejectWithValue(e.message)
     }
-} )
+})
+
+const profileSlice = createSlice({
+    name: 'profile',
+    initialState,
+    reducers: {},
+    extraReducers: {
+            [fetchProfile.pending]: (state, action) => {
+                state.status = 'pending'
+            },
+            [fetchProfile.rejected]: (state, action) => {
+                state.status = 'failed'
+                state.error = action.payload
+            },
+            [fetchProfile.fulfilled]: (state, action) => {
+                state.status = 'success'
+                state.profileData = action.payload
+            },
+    }
+})
+
+
 
 export const getProfileData = (state) => state.profile.profileData
 export const getProfileStatus = (state) => state.profile.status
