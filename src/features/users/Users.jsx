@@ -14,7 +14,7 @@ import UsersExcerpt from "./UsersExcerpt.jsx";
 const Users = () => {
     const dispatch = useDispatch()
 
-    const [content, setContent] = useState(<p></p>)
+    const [content, setContent] = useState(<p>Loading...</p>)
 
     const users = useSelector(getUsers)
     const status = useSelector(getUsersStatus)
