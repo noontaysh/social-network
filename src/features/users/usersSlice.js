@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {usersAPI} from "../../api/api.js";
 import {act} from "react-dom/test-utils";
+import axios from "axios";
 
 const initialState = {
     users: [],
@@ -8,17 +9,24 @@ const initialState = {
     error: null,
     totalCount: 0,
     pageSize: 10,
-    currentPage: 1,
+    currentPage: 2375,
 }
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', /**
  @param data {object}
  @param thunkAPI {object}
+ @param signal {object}
  */
-async (data, thunkAPI) => {
-    const {currentPage, pageSize} = data
+async (data, {signal, thunkAPI}) => {
     try {
-        return await usersAPI.getUsers(currentPage, pageSize)
+        const {currentPage, pageSize} = data
+        const source = axios.CancelToken.source()
+        signal.addEventListener('abort', () => {
+            source.cancel()
+        })
+        return await usersAPI.getUsers(currentPage, pageSize, {
+            cancelToken: source.token
+        })
     } catch (e) {
         return thunkAPI.rejectWithValue(e)
     }
@@ -50,5 +58,6 @@ export const getUsersStatus = (state) => state.users.status
 export const getUserError = (state) => state.users.error
 export const getTotalCount = (state) => state.users.totalCount
 export const getCurrentPage = (state) => state.users.currentPage
+export const getPageSize = (state) => state.users.pageSize
 
 export default usersSlice.reducer
