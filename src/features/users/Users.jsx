@@ -11,6 +11,7 @@ import {
 } from "./usersSlice.js";
 import UsersExcerpt from "./UsersExcerpt.jsx";
 import Paginator from "../../components/paginator/Paginator.jsx";
+import './Users.scss'
 
 const Users = () => {
     const dispatch = useDispatch()
@@ -50,9 +51,11 @@ const Users = () => {
     }
 
     return (
-        <div>
+        <div className={'users'}>
             <Paginator totalCount={totalCount} paginate={paginate} pageSize={pageSize} currentPage={currentPage} />
+            <div className={'users__content'}>
             {content}
+            </div>
         </div>
     );
 };

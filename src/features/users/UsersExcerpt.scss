@@ -1,0 +1,30 @@
+.users-excerpt {
+  width: 30%;
+  margin: 1rem;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  cursor: pointer;
+
+  background-color: rgba(cornflowerblue, .4);
+
+  border-radius: 23px;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+}
+
+.users-excerpt__content {
+  text-align: center;
+
+  padding: 1rem;
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 2;
+  }
+}

@@ -8,7 +8,7 @@ const initialState = {
     status: 'idle',
     error: null,
     totalCount: 0,
-    pageSize: 10,
+    pageSize: 6,
 }
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', /**
