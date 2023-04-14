@@ -9,7 +9,6 @@ const initialState = {
     error: null,
     totalCount: 0,
     pageSize: 10,
-    currentPage: 2375,
 }
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', /**

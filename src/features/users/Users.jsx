@@ -10,11 +10,13 @@ import {
     getUsersStatus
 } from "./usersSlice.js";
 import UsersExcerpt from "./UsersExcerpt.jsx";
+import Paginator from "../../components/paginator/Paginator.jsx";
 
 const Users = () => {
     const dispatch = useDispatch()
 
     const [content, setContent] = useState(<p>Loading...</p>)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const users = useSelector(getUsers)
     const status = useSelector(getUsersStatus)
@@ -22,7 +24,7 @@ const Users = () => {
 
     const totalCount = useSelector(getTotalCount)
     const pageSize = useSelector(getPageSize)
-    const currentPage = useSelector(getCurrentPage)
+    // const currentPage = useSelector(getCurrentPage)
 
     useEffect(() => {
         const promise = dispatch(fetchUsers({currentPage, pageSize}))
@@ -43,8 +45,13 @@ const Users = () => {
         }
     }, [status])
 
+    const paginate = (page) => {
+        setCurrentPage(page)
+    }
+
     return (
         <div>
+            <Paginator totalCount={totalCount} paginate={paginate} pageSize={pageSize} currentPage={currentPage} />
             {content}
         </div>
     );
