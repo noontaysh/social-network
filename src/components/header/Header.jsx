@@ -7,7 +7,7 @@ const Header = () => {
         <header>
             <img src="https://cryptologos.cc/logos/aave-aave-logo.png" alt=""/>
             <div className={'header__content'}>
-                <NavLink to={'/profile/11'} className={(navData) => (navData.isActive ? 'link__active' : '')}>
+                <NavLink to={'/profile'} className={(navData) => (navData.isActive ? 'link__active' : '')}>
                     <p>Profile</p>
                 </NavLink>
                 <NavLink to={'/users'} className={(navData) => (navData.isActive ? 'link__active' : '')}>

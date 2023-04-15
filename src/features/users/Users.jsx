@@ -25,7 +25,6 @@ const Users = () => {
 
     const totalCount = useSelector(getTotalCount)
     const pageSize = useSelector(getPageSize)
-    // const currentPage = useSelector(getCurrentPage)
 
     useEffect(() => {
         const promise = dispatch(fetchUsers({currentPage, pageSize}))
