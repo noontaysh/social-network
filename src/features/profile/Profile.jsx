@@ -1,7 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {fetchProfile, getProfileData, getProfileError, getProfileStatus} from "./profileSlice.js";
+import {
+    fetchProfile,
+    fetchStatus,
+    getProfileData,
+    getProfileError,
+    getProfileStatus,
+    getUserStatus
+} from "./profileSlice.js";
 import ProfileExcerpt from "./ProfileExcerpt.jsx";
 
 const Profile = () => {
@@ -13,20 +20,22 @@ const Profile = () => {
     const data = useSelector(getProfileData)
     const status = useSelector(getProfileStatus)
     const error = useSelector(getProfileError)
+    const userStatus = useSelector(getUserStatus)
 
     useEffect(() => {
         dispatch(fetchProfile(userId))
+        dispatch(fetchStatus(userId))
     }, [userId, dispatch])
 
     useEffect(() => {
         if(status === 'pending') {
             setContent(<p>Loading...</p>)
         } else if(status === 'success') {
-           setContent(<ProfileExcerpt {...data} />)
+           setContent(<ProfileExcerpt {...data} userStatus={userStatus} />)
         } else if (status === 'failed') {
             setContent(<p>{error}</p>)
         }
-    }, [status])
+    }, [status, userStatus])
 
 
     return (
