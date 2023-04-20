@@ -10,6 +10,7 @@ import {
     getUserStatus
 } from "./profileSlice.js";
 import ProfileExcerpt from "./ProfileExcerpt.jsx";
+import {getCustomerId} from "../auth/authSlice.js";
 
 const Profile = () => {
     const dispatch = useDispatch()
@@ -21,10 +22,11 @@ const Profile = () => {
     const status = useSelector(getProfileStatus)
     const error = useSelector(getProfileError)
     const userStatus = useSelector(getUserStatus)
+    const customerId = useSelector(getCustomerId)
 
     useEffect(() => {
-        dispatch(fetchProfile(userId))
-        dispatch(fetchStatus(userId))
+        dispatch(fetchProfile(userId || customerId))
+        dispatch(fetchStatus(userId || customerId))
     }, [userId, dispatch])
 
     useEffect(() => {

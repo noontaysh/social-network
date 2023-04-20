@@ -28,3 +28,19 @@ export const usersAPI = {
             .then(response => response.data)
     }
 }
+
+export const authAPI = {
+    login(email, password, rememberMe = false, captcha = null) {
+        return instance
+            .post(`auth/login`, {email, password, rememberMe, captcha})
+            .then(response => response)
+    },
+    getAuth() {
+        return instance
+            .get(`auth/me`)
+            .then(response => response)
+    },
+    logOut() {
+        return instance.delete(`auth/login`)
+    }
+}
