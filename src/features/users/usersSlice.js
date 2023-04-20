@@ -32,6 +32,19 @@ async (data, {signal, thunkAPI}) => {
 }
 )
 
+export const fetchFollow = createAsyncThunk('users/follow', /**
+ @param userId {string}
+ @param thunkAPI {object}
+ */
+async (userId, {thunkAPI}) => {
+    try {
+        return userId
+    } catch (e) {
+        return thunkAPI.rejectedWithValue(e)
+    }
+}
+)
+
 const usersSlice = createSlice({
     name: 'users',
     initialState,

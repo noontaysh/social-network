@@ -37,7 +37,6 @@ const Profile = () => {
         }
     }, [status, userStatus])
 
-
     return (
         <div>
             {content}
