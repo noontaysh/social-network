@@ -5,6 +5,7 @@ import Profile from "./features/profile/Profile.jsx";
 import Header from "./components/header/Header.jsx";
 import './common/Container.scss'
 import Users from "./features/users/Users.jsx";
+import LoginForm from "./features/auth/LoginForm.jsx";
 
 function App() {
     return (
@@ -17,6 +18,9 @@ function App() {
                     }/>
                     <Route path={'/users'} element={
                         <Users/>
+                    }/>
+                    <Route path={'/auth'} element={
+                       <LoginForm />
                     }/>
                 </Routes>
             </BrowserRouter>
