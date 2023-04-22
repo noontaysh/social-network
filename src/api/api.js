@@ -15,9 +15,9 @@ export const profileAPI = {
             .then(response => response.data)
     },
     getStatus(userId) {
-      return instance
-          .get(`profile/status/${userId}`)
-          .then(response => response.data)
+        return instance
+            .get(`profile/status/${userId}`)
+            .then(response => response.data)
     }
 }
 
@@ -41,6 +41,8 @@ export const authAPI = {
             .then(response => response)
     },
     logOut() {
-        return instance.delete(`auth/login`)
+        return instance
+            .delete(`auth/login`)
+            .then(response => response)
     }
 }
