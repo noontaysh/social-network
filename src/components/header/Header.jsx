@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import './Header.scss'
+import HeaderProfile from "../../features/auth/HeaderProfile.jsx";
 
 const Header = () => {
     return (
@@ -19,6 +20,7 @@ const Header = () => {
                 <NavLink to={'/news'} className={(navData) => (navData.isActive ? 'link__active' : '')}>
                     <p>News</p>
                 </NavLink>
+                <HeaderProfile />
             </div>
         </header>
     );

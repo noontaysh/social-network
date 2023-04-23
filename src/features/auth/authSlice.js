@@ -124,5 +124,6 @@ export const getAuthStatus = (state) => state.auth.isAuth
 export const getCustomerId = (state) => state.auth.userId
 export const getAuthenticationError = (state) => state.auth.error
 export const getCaptchaUrl = (state) => state.auth.captchaUrl
+export const getUserLogin = (state) => state.auth.login
 
 export default authSlice.reducer
