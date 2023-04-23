@@ -4,13 +4,15 @@ import CustomInput from "./CustomInput.jsx";
 import {loginSchema} from "../../utilities/validationSchema.jsx";
 import CustomCheckbox from "./CustomCheckbox";
 import {useDispatch, useSelector} from "react-redux";
-import {getAuthenticationError, getAuthStatus, getCustomerId, getLogged} from "./authSlice.js";
+import {getAuthenticationError, getAuthStatus, getCaptchaUrl, getCustomerId, getLogged} from "./authSlice.js";
 import {Navigate} from "react-router-dom";
+import Captcha from "./Captcha.jsx";
 
 const LoginForm = (props) => {
     const dispatch = useDispatch()
 
     const error = useSelector(getAuthenticationError)
+    const captchaUrl = useSelector(getCaptchaUrl)
 
     const handleSubmit = (formData, {resetForm}) => {
         dispatch(getLogged({...formData}))
@@ -18,15 +20,15 @@ const LoginForm = (props) => {
     }
     return (
         <>
-            <Formik initialValues={{email: '', password: '', rememberMe: false}} validationSchema={loginSchema}
+            <Formik initialValues={{email: '', password: '', rememberMe: false, captcha: null}} validationSchema={loginSchema}
                     onSubmit={handleSubmit}>
                 {(props) => (
                     <Form>
                         <CustomInput label={'Email'} name={'email'} type={'text'} placeholder={'Enter your email'}/>
-                        <CustomInput label={'Password'} name={'password'} type={'password'}
-                                     placeholder={'Enter your password'}/>
+                        <CustomInput label={'Password'} name={'password'} type={'password'} placeholder={'Enter your password'}/>
                         <CustomCheckbox type={'checkbox'} name={'rememberMe'}/>
                         <div>{error}</div>
+                        {captchaUrl ? <Captcha captchaUrl={captchaUrl} /> : ''}
                         <button type={"submit"} disabled={props.isSubmitting}>login</button>
                     </Form>
                 )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useField} from "formik";
 
-const CustomInput = ({...props}) => {
+const CustomCheckbox = ({...props}) => {
     const [field, meta] = useField(props)
 
     return (
@@ -13,4 +13,4 @@ const CustomInput = ({...props}) => {
     );
 };
 
-export default CustomInput;
+export default CustomCheckbox;
