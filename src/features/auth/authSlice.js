@@ -24,6 +24,10 @@ export const getLogged = createAsyncThunk('auth/getLogged', /**
             if (response.data.resultCode === 0) {
                 dispatch(getAuthenticated())
             } else {
+                if (response.data.resultCode === 10) {
+                    dispatch(fetchCaptcha())
+                }
+
                 return rejectWithValue(response.data.messages[0])
             }
         } catch (e) {
@@ -64,6 +68,19 @@ export const getLoggedOut = createAsyncThunk('auth/getLoggedOut', /**
     }
 )
 
+export const fetchCaptcha = createAsyncThunk('auth/fetchCaptcha', /**
+ @param rejectWithValue {function}
+ @param _ {undefined}
+ */
+async(_, {rejectWithValue}) => {
+        try {
+            return await authAPI.getCaptchaUrl()
+        } catch (e) {
+            rejectWithValue(e)
+        }
+    }
+)
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -96,6 +113,9 @@ const authSlice = createSlice({
             state.isAuth = false
             state.error = null
             state.captchaUrl = null
+        },
+        [fetchCaptcha.fulfilled]: (state, action) => {
+            state.captchaUrl = action.payload
         }
     }
 })
@@ -103,5 +123,6 @@ const authSlice = createSlice({
 export const getAuthStatus = (state) => state.auth.isAuth
 export const getCustomerId = (state) => state.auth.userId
 export const getAuthenticationError = (state) => state.auth.error
+export const getCaptchaUrl = (state) => state.auth.captchaUrl
 
 export default authSlice.reducer
