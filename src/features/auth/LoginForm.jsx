@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Form, Formik} from "formik";
 import CustomInput from "./CustomInput.jsx";
-import {loginSchema} from "../../utilities/validationSchema.jsx";
+import {loginSchema} from "../../utilities/validationSchema.js";
 import CustomCheckbox from "./CustomCheckbox";
 import {useDispatch, useSelector} from "react-redux";
 import {getAuthenticationError, getAuthStatus, getCaptchaUrl, getCustomerId, getLogged} from "./authSlice.js";

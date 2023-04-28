@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {
+    fetchFollow, fetchUnFollow,
     fetchUsers,
-    getCurrentPage,
     getPageSize,
     getTotalCount,
     getUserError,
@@ -43,7 +43,7 @@ const Users = () => {
         } else if (status === 'failed') {
             setContent(<p>{error}</p>)
         }
-    }, [status])
+    }, [status, users])
 
     const paginate = (page) => {
         setCurrentPage(page)
