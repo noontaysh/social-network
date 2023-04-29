@@ -10,8 +10,8 @@ const UsersExcerpt = (props) => {
     const isFollowing = useSelector(getIsFollowing)
 
     return (
-        <>
-        <NavLink to={`/profile/${props.id}`} className={'users-excerpt'}>
+        <div className={'users-excerpt'}>
+        <NavLink to={`/profile/${props.id}`} >
             <img src={props.photos.large || 'https://www.w3schools.com/howto/img_avatar.png'} alt="user-photo"/>
             <div className={'users-excerpt__content'}>
                 <h3>{props.name}</h3>
@@ -21,7 +21,7 @@ const UsersExcerpt = (props) => {
         </NavLink>
             {props.followed ? <button disabled={isFollowing} onClick={() => dispatch(fetchUnFollow(props.id))}>Unfollow</button> :
                 <button disabled={isFollowing} onClick={() => dispatch(fetchFollow(props.id))} >Follow</button>}
-        </>
+        </div>
     );
 };
 

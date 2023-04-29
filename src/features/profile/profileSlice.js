@@ -11,25 +11,25 @@ const initialState = {
 
 export const fetchProfile = createAsyncThunk('profile/fetchProfile', /**
  @param userId {string}
- @param thunkAPI {object}
+ @param rejectWithValue {function}
  */
-async (userId, thunkAPI) => {
+async (userId, {rejectWithValue}) => {
     try {
         return await profileAPI.getProfile(userId)
     } catch (e) {
-        return thunkAPI.rejectWithValue(e.message)
+        return rejectWithValue(e.message)
     }
 })
 
 export const fetchStatus = createAsyncThunk('profile/fetchStatus', /**
  @param userId {string}
- @param thunkAPI {object}
+ @param rejectWithValue {function}
  */
-async (userId, thunkAPI) => {
+async (userId, {rejectWithValue}) => {
     try {
         return await profileAPI.getStatus(userId)
     } catch (e) {
-        return thunkAPI.rejectWithValue(e.message)
+        return rejectWithValue(e.message)
     }
 })
 
@@ -43,6 +43,7 @@ const profileSlice = createSlice({
         },
         [fetchProfile.rejected]: (state, action) => {
             state.status = 'failed'
+            console.log(action)
             state.error = action.payload
         },
         [fetchProfile.fulfilled]: (state, action) => {

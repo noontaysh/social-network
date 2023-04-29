@@ -6,7 +6,7 @@
   cursor: pointer;
 
   background-color: rgba(cornflowerblue, .4);
-
+  text-align: center;
   border-radius: 23px;
 
   img {
@@ -15,16 +15,20 @@
     object-fit: cover;
     object-position: 50% 50%;
   }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .users-excerpt__content {
-  text-align: center;
-
   padding: 1rem;
 
   h3 {
     font-size: 1.2rem;
     font-weight: 500;
     line-height: 2;
+
+    color: white;
   }
 }

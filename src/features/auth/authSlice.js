@@ -31,7 +31,7 @@ export const getLogged = createAsyncThunk('auth/getLogged', /**
                 return rejectWithValue(response.data.messages[0])
             }
         } catch (e) {
-            return rejectWithValue(e)
+            return rejectWithValue(e.message)
         }
     }
 )
@@ -49,7 +49,7 @@ export const getAuthenticated = createAsyncThunk('auth/getAuthenticated', /**
                 return rejectWithValue(response.data.messages[0])
             }
         } catch (e) {
-            return rejectWithValue(e)
+            return rejectWithValue(e.message)
         }
     }
 )
@@ -63,7 +63,7 @@ export const getLoggedOut = createAsyncThunk('auth/getLoggedOut', /**
             const response = await authAPI.logOut()
             return response.data.resultCode === 0 ? response.data.data : rejectWithValue(response.data.messages[0])
         } catch (e) {
-            return rejectWithValue(e)
+            return rejectWithValue(e.message)
         }
     }
 )
@@ -76,7 +76,7 @@ async(_, {rejectWithValue}) => {
         try {
             return await authAPI.getCaptchaUrl()
         } catch (e) {
-            rejectWithValue(e)
+            rejectWithValue(e.message)
         }
     }
 )

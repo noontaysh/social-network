@@ -15,10 +15,10 @@ const initialState = {
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', /**
  @param data {object}
- @param thunkAPI {object}
+ @param rejectWithValue {function}
  @param signal {object}
  */
-async (data, {signal, thunkAPI}) => {
+async (data, {signal, rejectWithValue}) => {
     try {
         const {currentPage, pageSize} = data
         const source = axios.CancelToken.source()
@@ -29,7 +29,7 @@ async (data, {signal, thunkAPI}) => {
             cancelToken: source.token
         })
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return rejectWithValue(e.message)
     }
 }
 )
@@ -46,9 +46,8 @@ async (userId, {rejectWithValue}) => {
         } else {
             return rejectWithValue(response.data.messages[0])
         }
-
     } catch (e) {
-        return rejectWithValue(e)
+        return rejectWithValue(e.message)
     }
 }
 )
@@ -66,7 +65,7 @@ export const fetchUnFollow = createAsyncThunk('users/fetchUnFollow', /**
                 return rejectWithValue(response.data.messages[0])
             }
         } catch (e) {
-            return rejectWithValue(e)
+            return rejectWithValue(e.message)
         }
     }
 )
@@ -101,7 +100,13 @@ const usersSlice = createSlice({
         [fetchUnFollow.fulfilled]: (state, action) => {
             state.isFollowing = false
             state.users = updateArrayObject(JSON.parse(JSON.stringify(state.users)), action.payload, 'id', {followed: false})
-        }
+        },
+        [fetchFollow.rejected]: (state, action) => {
+            state.error = action.payload
+        },
+        [fetchUnFollow.rejected]: (state, action) => {
+            state.error = action.payload
+        },
     }
 })
 
@@ -109,7 +114,6 @@ export const getUsers = (state) => state.users.users
 export const getUsersStatus = (state) => state.users.status
 export const getUserError = (state) => state.users.error
 export const getTotalCount = (state) => state.users.totalCount
-export const getCurrentPage = (state) => state.users.currentPage
 export const getPageSize = (state) => state.users.pageSize
 export const getIsFollowing = (state) => state.users.isFollowing
 
