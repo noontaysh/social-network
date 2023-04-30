@@ -18,6 +18,11 @@ export const profileAPI = {
         return instance
             .get(`profile/status/${userId}`)
             .then(response => response.data)
+    },
+    postStatus(status) {
+        return instance
+            .put(`profile/status/`, {status})
+            .then(response => response)
     }
 }
 
@@ -64,6 +69,5 @@ export const authAPI = {
         return instance
             .get(`security/get-captcha-url`)
             .then(response => response.data.url)
-
-    }
+    },
 }

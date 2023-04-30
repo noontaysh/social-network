@@ -33,6 +33,18 @@ async (userId, {rejectWithValue}) => {
     }
 })
 
+export const postStatus = createAsyncThunk('profile/postStatus', /**
+ @param status {string}
+ @param rejectWithValue {function}
+ */
+async (status, {rejectWithValue}) => {
+    try {
+        return await profileAPI.postStatus(status)
+    } catch (e) {
+        return rejectWithValue(e.message)
+    }
+})
+
 const profileSlice = createSlice({
     name: 'profile',
     initialState,
@@ -43,7 +55,6 @@ const profileSlice = createSlice({
         },
         [fetchProfile.rejected]: (state, action) => {
             state.status = 'failed'
-            console.log(action)
             state.error = action.payload
         },
         [fetchProfile.fulfilled]: (state, action) => {
@@ -58,7 +69,7 @@ const profileSlice = createSlice({
         },
         [fetchStatus.rejected]: (state, action) => {
             state.userStatus = action.payload
-        }
+        },
     }
 })
 
