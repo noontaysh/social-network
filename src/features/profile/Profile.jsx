@@ -33,7 +33,7 @@ const Profile = () => {
         if(status === 'pending') {
             setContent(<p>Loading...</p>)
         } else if(status === 'success') {
-           setContent(<ProfileExcerpt {...data} userStatus={userStatus} />)
+           setContent(<ProfileExcerpt {...data} userStatus={userStatus} isOwner={!userId} />)
         } else if (status === 'failed') {
             setContent(<p>{error}</p>)
         }

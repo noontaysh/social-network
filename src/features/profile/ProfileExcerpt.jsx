@@ -9,7 +9,7 @@ const ProfileExcerpt = (props) => {
             <img src={props.photos.large || 'https://www.w3schools.com/howto/img_avatar.png'} alt=""/>
             <div>
                 <h1>{props.fullName}</h1>
-                {isEditing ? <StatusEditForm setIsEditing={setIsEditing} /> : <p onDoubleClick={() => setIsEditing(true)}>{props.userStatus || '-----'}</p>}
+                {isEditing ? <StatusEditForm setIsEditing={setIsEditing} /> : <p onDoubleClick={() => props.isOwner && setIsEditing(true)}>{props.userStatus || '-----'}</p>}
                 <p>Looking for a job: {props.lookingForAJob ? 'yes' : 'no'}</p>
             </div>
         </div>

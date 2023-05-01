@@ -1,17 +1,15 @@
 import React from 'react';
 import {Form, Formik} from "formik";
 import CustomInput from "../auth/CustomInput.jsx";
-import {loginSchema} from "../../utilities/validationSchema.js";
-import {getLogged} from "../auth/authSlice.js";
 import {useDispatch} from "react-redux";
 import {postStatus} from "./profileSlice.js";
 
 const StatusEditForm = ({setIsEditing}) => {
     const dispatch = useDispatch()
 
-    const handleSubmit = (formData, {resetForm}) => {
-        console.log(formData)
-        // resetForm()
+    const handleSubmit = (formData) => {
+        setIsEditing(false)
+        dispatch(postStatus(formData.status))
     }
 
     const handleBlur = (formData) => {
@@ -24,7 +22,7 @@ const StatusEditForm = ({setIsEditing}) => {
                 onSubmit={handleSubmit}>
             {(props) => (
                 <Form onBlur={(e) => handleBlur(e)} >
-                    <CustomInput label={''} name={'status'} type={'text'} placeholder={'Enter your status'} />
+                    <CustomInput label={''} name={'status'} type={'text'} placeholder={'Enter your status'} autoFocus/>
                 </Form>
             )}
         </Formik>

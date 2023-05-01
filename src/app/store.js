@@ -8,7 +8,8 @@ export const store = configureStore({
         profile: profileReducer,
         users: usersReducer,
         auth: authReducer,
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })
 
 window._store_ = store
