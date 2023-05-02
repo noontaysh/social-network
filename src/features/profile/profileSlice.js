@@ -37,15 +37,30 @@ export const postStatus = createAsyncThunk('profile/postStatus', /**
  @param status {string}
  @param rejectWithValue {function}
  @param dispatch {function}
- @param getState {function}
  */
-async (status, {rejectWithValue, dispatch, getState}) => {
+async (status, {rejectWithValue, dispatch}) => {
     try {
         const response = await profileAPI.postStatus(status)
-        const userId = getState().auth.userId
         if (response.data.resultCode === 0) {
-            // dispatch(fetchStatus(userId))
             return status
+        } else {
+            return rejectWithValue(response.data.messages[0])
+        }
+    } catch (e) {
+        return rejectWithValue(e.message)
+    }
+})
+
+export const updatePhoto = createAsyncThunk('profile/updatePhoto', /**
+ @param rejectWithValue {function}
+ @param photo {object}
+ */
+async(photo, {rejectWithValue}) => {
+    try {
+        const response = await profileAPI.updatePhoto(photo)
+
+        if (response.data.resultCode === 0) {
+            return response.data.data.photos
         } else {
             return rejectWithValue(response.data.messages[0])
         }
@@ -84,6 +99,12 @@ const profileSlice = createSlice({
         },
         [postStatus.fulfilled]: (state, action) => {
             state.userStatus = action.payload
+        },
+        [updatePhoto.fulfilled]: (state, action) => {
+            state.profileData.photos = action.payload
+        },
+        [updatePhoto.rejected]: (state, action) => {
+            state.error = action.payload
         }
     }
 })

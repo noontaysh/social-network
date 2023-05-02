@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {
     fetchProfile,
@@ -18,7 +18,7 @@ const Profile = () => {
 
     const [content, setContent] = useState(<p>Loading...</p>)
 
-    const data = useSelector(getProfileData)
+    const data = useSelector(getProfileData, shallowEqual)
     const status = useSelector(getProfileStatus)
     const error = useSelector(getProfileError)
     const userStatus = useSelector(getUserStatus)
@@ -37,7 +37,7 @@ const Profile = () => {
         } else if (status === 'failed') {
             setContent(<p>{error}</p>)
         }
-    }, [status, userStatus])
+    }, [status, userStatus, data])
 
     return (
         <div>
