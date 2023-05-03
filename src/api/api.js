@@ -34,6 +34,11 @@ export const profileAPI = {
                 }
             })
             .then(response => response)
+    },
+    updateProfile(profileData) {
+        return instance
+            .put(`profile/`, profileData)
+            .then(response => response)
     }
 }
 
