@@ -33,6 +33,25 @@ async (userId, {rejectWithValue}) => {
     }
 })
 
+export const updateProfile = createAsyncThunk('profile/updateProfile', /**
+    @param profile {object}
+    @param rejectWithValue {function}
+    @param dispatch {function}
+    @param getState {function}
+ */
+async (profile, {rejectWithValue, dispatch, getState}) => {
+    try {
+        const response = await profileAPI.updateProfile(profile)
+        if (response.data.resultCode === 0) {
+            dispatch(fetchProfile(getState().auth.userId))
+        } else {
+            return rejectWithValue(response.data.messages[0])
+        }
+    } catch (e) {
+        return rejectWithValue(e.message)
+    }
+})
+
 export const postStatus = createAsyncThunk('profile/postStatus', /**
  @param status {string}
  @param rejectWithValue {function}
