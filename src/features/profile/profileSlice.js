@@ -124,6 +124,9 @@ const profileSlice = createSlice({
         },
         [updatePhoto.rejected]: (state, action) => {
             state.error = action.payload
+        },
+        [updateProfile.rejected]: (state, action) => {
+            console.log(action)
         }
     }
 })
