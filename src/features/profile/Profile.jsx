@@ -16,7 +16,7 @@ const Profile = () => {
     const dispatch = useDispatch()
     const {userId} = useParams()
 
-    const [content, setContent] = useState(<p>Loading...</p>)
+    const [content, setContent] = useState(<p></p>)
 
     const data = useSelector(getProfileData, shallowEqual)
     const status = useSelector(getProfileStatus)

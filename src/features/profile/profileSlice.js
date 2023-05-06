@@ -1,12 +1,13 @@
-import {createAsyncThunk, createSlice, isRejectedWithValue} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {profileAPI} from "../../api/api.js";
-import {act} from "react-dom/test-utils";
 
 const initialState = {
     profileData: {},
     status: 'idle',
     error: null,
     userStatus: '',
+    statusError: null,
+    photoError: null,
 }
 
 export const fetchProfile = createAsyncThunk('profile/fetchProfile', /**
@@ -104,29 +105,28 @@ const profileSlice = createSlice({
             state.status = 'success'
             state.profileData = action.payload
         },
-        [fetchStatus.pending]: (state, action) => {
-            state.userStatus = ''
-        },
         [fetchStatus.fulfilled]: (state, action) => {
             state.userStatus = action.payload
         },
         [fetchStatus.rejected]: (state, action) => {
-            state.userStatus = action.payload
+            state.statusError = action.payload
         },
         [postStatus.rejected]: (state, action) => {
-            state.userStatus = action.payload
+            state.statusError = action.payload
         },
         [postStatus.fulfilled]: (state, action) => {
             state.userStatus = action.payload
         },
         [updatePhoto.fulfilled]: (state, action) => {
             state.profileData.photos = action.payload
+            state.photoError = null
         },
         [updatePhoto.rejected]: (state, action) => {
-            state.error = action.payload
+            state.photoError = action.payload
+            state.error = null
         },
         [updateProfile.rejected]: (state, action) => {
-            console.log(action)
+            state.error = action.payload
         }
     }
 })
@@ -136,5 +136,6 @@ export const getProfileData = (state) => state.profile.profileData
 export const getProfileStatus = (state) => state.profile.status
 export const getProfileError = (state) => state.profile.error
 export const getUserStatus = (state) => state.profile.userStatus
+export const getPhotoError = (state) => state.profile.photoError
 
 export default profileSlice.reducer

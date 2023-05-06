@@ -4,8 +4,7 @@ import CustomInput from "./CustomInput.jsx";
 import {loginSchema} from "../../utilities/validationSchema.js";
 import CustomCheckbox from "./CustomCheckbox";
 import {useDispatch, useSelector} from "react-redux";
-import {getAuthenticationError, getAuthStatus, getCaptchaUrl, getCustomerId, getLogged} from "./authSlice.js";
-import {Navigate} from "react-router-dom";
+import {getAuthenticationError, getCaptchaUrl, getLogged} from "./authSlice.js";
 import Captcha from "./Captcha.jsx";
 
 const LoginForm = (props) => {
@@ -15,12 +14,13 @@ const LoginForm = (props) => {
     const captchaUrl = useSelector(getCaptchaUrl)
 
     const handleSubmit = (formData, {resetForm}) => {
-        dispatch(getLogged({...formData}))
-        resetForm()
+        dispatch(getLogged({...formData})).then(() => {
+            resetForm()
+        })
     }
     return (
         <>
-            <Formik initialValues={{email: '', password: '', rememberMe: false, captcha: null}} validationSchema={loginSchema}
+            <Formik initialValues={{email: '', password: '', rememberMe: false, captcha: ''}} validationSchema={loginSchema}
                     onSubmit={handleSubmit}>
                 {(props) => (
                     <Form>
