@@ -107,6 +107,7 @@ const profileSlice = createSlice({
         },
         [fetchStatus.fulfilled]: (state, action) => {
             state.userStatus = action.payload
+            state.statusError = null
         },
         [fetchStatus.rejected]: (state, action) => {
             state.statusError = action.payload
@@ -116,6 +117,7 @@ const profileSlice = createSlice({
         },
         [postStatus.fulfilled]: (state, action) => {
             state.userStatus = action.payload
+            state.statusError = null
         },
         [updatePhoto.fulfilled]: (state, action) => {
             state.profileData.photos = action.payload

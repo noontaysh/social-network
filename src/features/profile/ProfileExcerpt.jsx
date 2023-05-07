@@ -33,6 +33,8 @@ const ProfileData = ({isEditing, setIsEditing, ...props}) => {
             <div>
                 <h1>{props.fullName}</h1>
                 <StatusEditForm userStatus={props.userStatus} isOwner={props.isOwner} />
+                <p>Bio: {props.aboutMe}</p>
+                <p>Skills: {props.lookingForAJobDescription}</p>
                 <p>Looking for a job: {props.lookingForAJob ? 'yes' : 'no'}</p>
             </div>
             {Object.keys(props.contacts).map(key => {

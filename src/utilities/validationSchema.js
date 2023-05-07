@@ -29,6 +29,5 @@ export const profileSchema = yup.object().shape({
         .string()
         .required('Field is required'),
     lookingForAJob: yup
-        .string()
-
+        .string(),
 })
