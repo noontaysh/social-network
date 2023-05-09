@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {profileAPI} from "../../api/api.js";
+import {profileAPI} from "../../api/socialNetworkApi.js";
 
 const initialState = {
     profileData: {},

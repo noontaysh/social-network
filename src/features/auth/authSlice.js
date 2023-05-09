@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {authAPI} from "../../api/api.js";
+import {authAPI} from "../../api/socialNetworkApi.js";
 
 const initialState = {
     userId: null,

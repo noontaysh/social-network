@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {usersAPI} from "../../api/api.js";
+import {usersAPI} from "../../api/socialNetworkApi.js";
 import {act} from "react-dom/test-utils";
 import axios from "axios";
 import {updateArrayObject} from "../../utilities/objectHelpers.js";
