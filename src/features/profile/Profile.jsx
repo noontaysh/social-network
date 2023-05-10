@@ -11,7 +11,6 @@ import {
 } from "./profileSlice.js";
 import ProfileExcerpt from "./ProfileExcerpt.jsx";
 import {getCustomerId} from "../auth/authSlice.js";
-import {fetchNews} from "../news/newsSlice.js";
 
 const Profile = () => {
     const dispatch = useDispatch()
@@ -28,7 +27,6 @@ const Profile = () => {
     useEffect(() => {
         dispatch(fetchProfile(userId || customerId))
         dispatch(fetchStatus(userId || customerId))
-        dispatch(fetchNews())
     }, [userId, dispatch])
 
     useEffect(() => {

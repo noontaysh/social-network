@@ -8,6 +8,7 @@ import Users from "./features/users/Users.jsx";
 import LoginForm from "./features/auth/LoginForm.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getAuthenticated, getAuthStatus} from "./features/auth/authSlice.js";
+import News from "./features/news/News.jsx";
 
 function App() {
     const dispatch= useDispatch()
@@ -28,9 +29,8 @@ function App() {
                     }/>
                     <Route path={'/profile'} element={isAuth ? <Profile/> : <Navigate to={`/auth`}/>}/>
                     <Route path={'/users'} element={isAuth ? <Users/> : <Navigate to={`/auth`}/>}/>
-                    <Route path={'/auth'} element={ isAuth ? <Navigate to={'/profile'} /> :
-                        <LoginForm/>
-                    }/>
+                    <Route path={'/auth'} element={ isAuth ? <Navigate to={'/profile'} /> : <LoginForm/>}/>
+                    <Route path={'/news'} element={<News />} />
                 </Routes>
             </BrowserRouter>
         </div>

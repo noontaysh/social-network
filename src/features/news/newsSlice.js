@@ -32,7 +32,7 @@ const newsSlice = createSlice({
         [fetchNews.fulfilled]: (state, action) => {
             state.entities = action.payload.articles
             state.totalResults = action.payload.totalResults
-            state.status = action.payload.status
+            state.status = 'success'
         },
         [fetchNews.rejected]: (state, action) => {
             state.error = action.payload.message
@@ -40,5 +40,9 @@ const newsSlice = createSlice({
         }
     }
 })
+
+export const getNews = (state) => state.news.entities
+export const getNewsError = (state) => state.news.error
+export const getNewsStatus = (state) => state.news.status
 
 export default newsSlice.reducer
