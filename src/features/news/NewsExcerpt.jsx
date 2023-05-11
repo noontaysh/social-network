@@ -3,7 +3,11 @@ import React from 'react';
 const NewsExcerpt = (props) => {
     return (
         <div>
-            {props.title}
+            <img src={props.urlToImage} alt=""/>
+            <h1>{props.title}</h1>
+            <div>
+            {props.description}
+            </div>
         </div>
     );
 };

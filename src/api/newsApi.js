@@ -8,9 +8,9 @@ const instance = axios.create({
 })
 
 export const newsApi = {
-    getAllNews() {
+    getAllNews(currentPage, pageSize, config) {
         return instance
-            .get(`everything?q=victory`)
-            .then(response => response)
+            .get(`top-headlines?language=en&page=${currentPage}&pageSize=${pageSize}`, config)
+            .then(response => response.data)
     }
 }
