@@ -3,7 +3,6 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import React, {useEffect} from "react";
 import Profile from "./features/profile/Profile.jsx";
 import Header from "./components/header/Header.jsx";
-import './common/Container.scss'
 import Users from "./features/users/Users.jsx";
 import LoginForm from "./features/auth/LoginForm.jsx";
 import {useDispatch, useSelector} from "react-redux";
@@ -20,9 +19,10 @@ function App() {
     }, [])
 
     return (
-        <div className="App container">
+        <div>
             <BrowserRouter>
                 <Header/>
+                <div className="w-full max-w-7xl overflow-hidden mx-auto my-0 px-4">
                 <Routes>
                     <Route path={'/profile/:userId'} element={ isAuth ?
                         <Profile/> : <Navigate to={`/auth`} />
@@ -32,6 +32,7 @@ function App() {
                     <Route path={'/auth'} element={ isAuth ? <Navigate to={'/profile'} /> : <LoginForm/>}/>
                     <Route path={'/news'} element={<News />} />
                 </Routes>
+                </div>
             </BrowserRouter>
         </div>
     )
