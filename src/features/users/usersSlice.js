@@ -9,7 +9,7 @@ const initialState = {
     status: 'idle',
     error: null,
     totalCount: 0,
-    pageSize: 6,
+    pageSize: 10,
     isFollowing: false
 }
 

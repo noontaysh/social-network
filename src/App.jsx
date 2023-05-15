@@ -19,7 +19,7 @@ function App() {
     }, [])
 
     return (
-        <div>
+        <div className={'bg-indigo-400 h-screen'}>
             <BrowserRouter>
                 <Header/>
                 <div className="w-full max-w-7xl overflow-hidden mx-auto my-0 px-4">

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {
-    fetchFollow, fetchUnFollow,
     fetchUsers,
     getPageSize,
     getTotalCount,
@@ -11,7 +10,6 @@ import {
 } from "./usersSlice.js";
 import UsersExcerpt from "./UsersExcerpt.jsx";
 import Paginator from "../../components/paginator/Paginator.jsx";
-import './Users.scss'
 
 const Users = () => {
     const dispatch = useDispatch()
@@ -50,9 +48,9 @@ const Users = () => {
     }
 
     return (
-        <div className={'users'}>
+        <div className={''}>
             <Paginator totalCount={totalCount} paginate={paginate} pageSize={pageSize} currentPage={currentPage} />
-            <div className={'users__content'}>
+            <div className={'flex flex-wrap p-4 justify-center'}>
             {content}
             </div>
         </div>
