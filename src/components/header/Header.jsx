@@ -4,7 +4,7 @@ import HeaderProfile from "../../features/auth/HeaderProfile.jsx";
 
 const Header = () => {
     return (
-        <header className={'flex py-2 px-80 justify-between items-center bg-indigo-700 mb-4'}>
+        <header className={'flex py-2 px-80 justify-between items-center bg-indigo-700 mb-8'}>
             <img src="https://cryptologos.cc/logos/aave-aave-logo.png" alt="logo" className={'w-14 h-auto'}/>
             <div className={'flex'}>
                 {[

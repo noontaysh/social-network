@@ -40,7 +40,7 @@ const Profile = () => {
     }, [status, userStatus, data])
 
     return (
-        <div>
+        <div className={'bg-black/[.5] p-8 rounded-xl'}>
             {content}
         </div>
     );

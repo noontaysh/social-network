@@ -17,22 +17,26 @@ const ProfileExcerpt = (props) => {
     }
 
     return (
-        <div>
-            <img src={props.photos.large || 'https://www.w3schools.com/howto/img_avatar.png'} alt=""/>
+        <div className={'flex'}>
             <div>
-                {props.isOwner && <input type="file" onChange={onPhotoChange}/>} {photoError}
+                <img className={'rounded-xl mb-4'}
+                     src={props.photos.large || 'https://www.w3schools.com/howto/img_avatar.png'} alt=""/>
+                <div>
+                    {props.isOwner && <input type="file" onChange={onPhotoChange}/>} {photoError}
+                </div>
             </div>
-            {isEditing ? <ProfileEditForm {...props} setIsEditing={setIsEditing}/> : <ProfileData {...props} setIsEditing={setIsEditing} isEditing={isEditing} /> }
+            {isEditing ? <ProfileEditForm {...props} setIsEditing={setIsEditing}/> :
+                <ProfileData {...props} setIsEditing={setIsEditing} isEditing={isEditing}/>}
         </div>
     );
 };
 
 const ProfileData = ({isEditing, setIsEditing, ...props}) => {
     return (
-        <>
-            <div>
-                <h1>{props.fullName}</h1>
-                <StatusEditForm userStatus={props.userStatus} isOwner={props.isOwner} />
+        <div className={'pl-6 pt-4'}>
+            <div className={'mb-2 leading-5'}>
+                <h1 className={'text-2xl text-white'}>{props.fullName}</h1>
+                <StatusEditForm userStatus={props.userStatus} isOwner={props.isOwner}/>
                 <p>{props.aboutMe && `Bio: ${props.aboutMe}`}</p>
                 <p>{props.lookingForAJobDescription && `Skills: ${props.lookingForAJobDescription}`}</p>
                 <p>Looking for a job: {props.lookingForAJob ? 'yes' : 'no'}</p>
@@ -40,8 +44,8 @@ const ProfileData = ({isEditing, setIsEditing, ...props}) => {
             {Object.keys(props.contacts).map(key => {
                 return <ProfileContacts key={key} title={key} value={props.contacts[key]}/>
             })}
-            {props.isOwner && <button onClick={() => setIsEditing(true)}>Edit</button>}
-        </>
+            {props.isOwner && <button className={'bg-white py-1 px-6 rounded-md text-black uppercase tracking-wider text-sm'} onClick={() => setIsEditing(true)}>Edit</button>}
+        </div>
     )
 }
 
