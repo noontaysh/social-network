@@ -34,7 +34,7 @@ const StatusEditForm = ({isOwner, userStatus}) => {
                     )}
                 </Formik>
                 :
-                <p onDoubleClick={() => isOwner && setIsEditing(true)}>{userStatus || 'status is absent'}</p>}
+                <p onDoubleClick={() => isOwner && setIsEditing(true)}>{userStatus || 'no status'}</p>}
         </>
 
     );

@@ -15,22 +15,30 @@ const ProfileEditForm = ({setIsEditing, ...props}) => {
     }
 
     return (
-        <Formik enableReinitialize initialValues={{aboutMe: `${props.aboutMe}`, contacts: {}, lookingForAJob: props.lookingForAJob, lookingForAJobDescription: `${props.lookingForAJobDescription}` , fullName: `${props.fullName}`}} onSubmit={handleSubmit} validationSchema={profileSchema}>
-            {() => (
-                <Form>
-                    <CustomInput label={'Full name'} name={'fullName'} type={'text'} placeholder={'Your Name'}/>
-                    <CustomInput label={'About me'} name={'aboutMe'} type={'text'} placeholder={'About You'} />
-                    <CustomInput label={'Skills'} name={'lookingForAJobDescription'} type={'text'} placeholder={'Your skills'} />
-                    <CustomInput label={'Looking for a job'} name={'lookingForAJob'} type={'checkbox'}/>
-                    {Object.keys(props.contacts).map(key => {
-                        return (
-                            <CustomInput key={key} label={`${key}:`} name={`contacts.${key}`} type={'text'} placeholder={`Your url`}/>
-                        )
-                    })}
-                    <button type={"submit"}>Submit</button>
-                </Form>
-            )}
-        </Formik>
+        <div className={'pl-4'}>
+            <Formik enableReinitialize initialValues={{
+                aboutMe: `${props.aboutMe}`,
+                contacts: {},
+                lookingForAJob: props.lookingForAJob,
+                lookingForAJobDescription: `${props.lookingForAJobDescription}`,
+                fullName: `${props.fullName}`
+            }} onSubmit={handleSubmit} validationSchema={profileSchema}>
+                {() => (
+                    <Form className={'leading-6'}>
+                        <CustomInput label={'Full name: '} name={'fullName'} type={'text'} placeholder={'Your Name'} className={'mb-1 ml-1 px-1 outline-none'}/>
+                        <CustomInput label={'About me: '} name={'aboutMe'} type={'text'} placeholder={'About You'} className={'mb-1 px-1 ml-1 outline-none'}/>
+                        <CustomInput label={'Skills: '} name={'lookingForAJobDescription'} type={'text'} placeholder={'Your skills'} className={'mb-1 ml-1 px-1 outline-none'}/>
+                        <CustomInput label={'Looking for a job: '} name={'lookingForAJob'} type={'checkbox'} className={'mb-1 outline-none'}/>
+                        {Object.keys(props.contacts).map(key => {
+                            return (
+                                <CustomInput key={key} label={`${key}: `} name={`contacts.${key}`} type={'text'} placeholder={`Your url`} className={'mb-1 ml-1 px-1 outline-none'}/>
+                            )
+                        })}
+                        <button type={"submit"} className={'bg-slate-200 py-1 mt-2 px-6 rounded-md text-black uppercase tracking-wider text-sm hover:opacity-70 ease-in duration-300'}>Submit</button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
     );
 };
 
