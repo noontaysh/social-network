@@ -5,7 +5,7 @@ const CustomInput = ({label, ...props}) => {
     const [field, meta] = useField(props)
 
     return (
-        <div className={'flex'}>
+        <div className={'mb-6'}>
             <label className={'capitalize'}>{label}</label>
             <input {...field} {...props}/>
             {meta.touched && meta.error && <div className={'text-red-500 ml-1'}>{meta.error}</div>}
