@@ -20,7 +20,6 @@ export const getLogged = createAsyncThunk('auth/getLogged', /**
         try {
             const {email, password, rememberMe, captcha = null} = data
             const response = await authAPI.login(email, password, rememberMe, captcha)
-            //12789121278912+
             if (response.data.resultCode === 0) {
                 dispatch(getAuthenticated())
             } else {
