@@ -40,8 +40,10 @@ const Profile = () => {
     }, [status, userStatus, data])
 
     return (
-        <div className={'bg-black/[.5] p-8 rounded-xl'}>
-            {content}
+        <div className={'h-screen'}>
+            <div className={'bg-black/[.5] p-8 rounded-xl '}>
+                {content}
+            </div>
         </div>
     );
 };

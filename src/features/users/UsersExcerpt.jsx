@@ -9,7 +9,7 @@ const UsersExcerpt = (props) => {
     const isFollowing = useSelector(getIsFollowing)
 
     return (
-        <div className={'w-2/12 m-4 overflow-hidden break-words cursor-pointer border-2 rounded-md shadow-lg text-center'}>
+        <div className={'w-2/12 m-4 overflow-hidden break-words cursor-pointer border-2 rounded-md shadow-lg text-center h-max'}>
         <NavLink className={''} to={`/profile/${props.id}`} >
             <img className={'w-full h-auto object-cover object-center'} src={props.photos.large || 'https://www.w3schools.com/howto/img_avatar.png'} alt="user-photo"/>
             <div className={'p-4'}>

@@ -48,12 +48,14 @@ const Users = () => {
     }
 
     return (
-        <div className={'flex flex-wrap justify-center'}>
-            <div className={''}>
-                <Paginator totalCount={totalCount} paginate={paginate} pageSize={pageSize} currentPage={currentPage}/>
-            </div>
-            <div className={'flex flex-wrap p-4 justify-center w-screen'}>
-                {content}
+        <div className={'h-screen'}>
+            <div className={'flex flex-wrap justify-center'}>
+                <div className={'mb-4'}>
+                    <Paginator totalCount={totalCount} paginate={paginate} pageSize={pageSize} currentPage={currentPage}/>
+                </div>
+                <div className={'flex flex-wrap justify-center'}>
+                    {content}
+                </div>
             </div>
         </div>
     );

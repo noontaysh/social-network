@@ -44,7 +44,7 @@ const ProfileData = ({isEditing, setIsEditing, ...props}) => {
             {Object.keys(props.contacts).map(key => {
                 return <ProfileContacts key={key} title={key} value={props.contacts[key]}/>
             })}
-            {props.isOwner && <button className={'bg-white py-1 px-6 rounded-md text-black uppercase tracking-wider text-sm'} onClick={() => setIsEditing(true)}>Edit</button>}
+            {props.isOwner && <button className={'bg-white py-1 px-6 rounded-md text-black uppercase tracking-wider text-sm mt-2'} onClick={() => setIsEditing(true)}>Edit</button>}
         </div>
     )
 }

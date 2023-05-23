@@ -32,6 +32,8 @@ const News = () => {
             setContent(news !== undefined && news.map(item => {
                 return <NewsExcerpt key={item.title} {...item} />
             }))
+        } else if (status === 'failed') {
+            setContent(<p>{error}</p>)
         }
     }, [status])
 
@@ -40,9 +42,16 @@ const News = () => {
     }
 
     return (
-        <div>
-            <Paginator totalCount={totalResults} paginate={paginate} pageSize={pageSize} currentPage={currentPage} />
-            {content}
+        <div className={'flex justify-center flex-wrap'}>
+            <div className={'mb-5'}>
+                <Paginator totalCount={totalResults} paginate={paginate} pageSize={pageSize} currentPage={currentPage} />
+            </div>
+            <div className={'flex flex-wrap justify-center w-screen'}>
+                {content}
+            </div>
+            <div className={'mb-5'}>
+                <Paginator totalCount={totalResults} paginate={paginate} pageSize={pageSize} currentPage={currentPage} />
+            </div>
         </div>
     );
 };

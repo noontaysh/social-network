@@ -7,7 +7,7 @@ const initialState = {
     status: 'idle',
     error: null,
     totalResults: 0,
-    pageSize: 5,
+    pageSize: 6,
 }
 
 export const fetchNews = createAsyncThunk('news/fetchNews', /**
