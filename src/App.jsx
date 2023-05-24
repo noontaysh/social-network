@@ -8,6 +8,7 @@ import LoginForm from "./features/auth/LoginForm.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getAuthenticated, getAuthStatus} from "./features/auth/authSlice.js";
 import News from "./features/news/News.jsx";
+import ErrorPage from "./components/error/ErrorPage.jsx";
 
 function App() {
     const dispatch= useDispatch()
@@ -24,13 +25,12 @@ function App() {
                 <Header/>
                 <div className="w-full max-w-7xl overflow-hidden mx-auto my-0 px-4">
                 <Routes>
-                    <Route path={'/profile/:userId'} element={ isAuth ?
-                        <Profile/> : <Navigate to={`/auth`} />
-                    }/>
+                    <Route path={'/profile/:userId'} element={ isAuth ? <Profile/> : <Navigate to={`/auth`} />}/>
                     <Route path={'/profile'} element={isAuth ? <Profile/> : <Navigate to={`/auth`}/>}/>
                     <Route path={'/users'} element={isAuth ? <Users/> : <Navigate to={`/auth`}/>}/>
                     <Route path={'/auth'} element={ isAuth ? <Navigate to={'/profile'} /> : <LoginForm/>}/>
                     <Route path={'/news'} element={<News />} />
+                    <Route path={'*'} element={<ErrorPage />} />
                 </Routes>
                 </div>
             </BrowserRouter>
