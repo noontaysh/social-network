@@ -37,13 +37,17 @@ const ProfileData = ({isEditing, setIsEditing, ...props}) => {
             <div className={'mb-2 leading-5'}>
                 <h1 className={'text-2xl text-white'}>{props.fullName}</h1>
                 <StatusEditForm userStatus={props.userStatus} isOwner={props.isOwner}/>
-                <p>{props.aboutMe && `Bio: ${props.aboutMe}`}</p>
-                <p>{props.lookingForAJobDescription && `Skills: ${props.lookingForAJobDescription}`}</p>
-                <p>Looking for a job: {props.lookingForAJob ? 'yes' : 'no'}</p>
+                <div className={'mt-4'}>
+                    <p>{props.aboutMe && `Bio: ${props.aboutMe}`}</p>
+                    <p>{props.lookingForAJobDescription && `Skills: ${props.lookingForAJobDescription}`}</p>
+                    <p>Looking for a job: {props.lookingForAJob ? 'yes' : 'no'}</p>
+                </div>
             </div>
-            {Object.keys(props.contacts).map(key => {
-                return <ProfileContacts key={key} title={key} value={props.contacts[key]}/>
-            })}
+            <div className={'flex'}>
+                {Object.keys(props.contacts).map(key => {
+                    return <ProfileContacts key={key} title={key} value={props.contacts[key]}/>
+                })}
+            </div>
             {props.isOwner && <button className={'bg-white py-1 px-6 rounded-md text-black uppercase tracking-wider text-sm mt-2'} onClick={() => setIsEditing(true)}>Edit</button>}
         </div>
     )

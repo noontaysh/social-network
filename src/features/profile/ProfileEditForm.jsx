@@ -18,7 +18,7 @@ const ProfileEditForm = ({setIsEditing, ...props}) => {
         <div className={'pl-4'}>
             <Formik enableReinitialize initialValues={{
                 aboutMe: `${props.aboutMe}`,
-                contacts: {},
+                contacts: {...props.contacts},
                 lookingForAJob: props.lookingForAJob,
                 lookingForAJobDescription: `${props.lookingForAJobDescription}`,
                 fullName: `${props.fullName}`
